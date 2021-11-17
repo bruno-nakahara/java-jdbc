@@ -50,4 +50,15 @@ public class TesteBancoJdbc {
 		System.out.println(userposjava);
 		
 	}
+	
+	@Test
+	public void initAtualizar() throws SQLException {
+		UserPosDAO dao = new UserPosDAO();
+
+		Userposjava userposjava = dao.buscar(4L);
+		userposjava.setNome("Bruno Hideki Silva Nakahara");
+		
+		dao.atualizar(userposjava);
+		
+	}
 }
