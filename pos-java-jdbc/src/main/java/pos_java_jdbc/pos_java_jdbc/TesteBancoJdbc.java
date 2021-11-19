@@ -2,6 +2,8 @@ package pos_java_jdbc.pos_java_jdbc;
 
 import conexaojdbc.SingleConnection;
 import dao.UserPosDAO;
+import model.BeanUserFone;
+import model.Telefone;
 import model.Userposjava;
 
 import java.sql.SQLException;
@@ -66,6 +68,53 @@ public class TesteBancoJdbc {
 		try {
 			UserPosDAO dao = new UserPosDAO();
 			dao.deletar(5L);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void initInsertTelefone() {
+		try {
+			Telefone telefone = new Telefone();
+			telefone.setNumero("(11) 2222-2222");
+			telefone.setTipo("casa");
+			telefone.setUsuario(7L);
+			
+			UserPosDAO dao = new UserPosDAO();
+			dao.salvarTelefone(telefone);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void testeCarregaFoneUser() {
+		try {
+			UserPosDAO dao = new UserPosDAO();
+
+			List<BeanUserFone> beanUserFones = dao.listaUserFone(7L);
+			
+			for (BeanUserFone beanUserFone : beanUserFones) {
+				System.out.println(beanUserFone);
+				System.out.println("----------------------------------------------");
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void testeDeleteUserFone() {
+		try {
+			UserPosDAO dao = new UserPosDAO();
+			dao.deleteFonePorUser(7L);
 			
 		} catch (Exception e) {
 			// TODO: handle exception
